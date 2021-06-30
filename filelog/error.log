@@ -1,0 +1,1 @@
+{"message":"ReferenceError: b is not defined\n    at matchesWinPerTeam (/home/thushar/mount_blue/drills/iplTeamSQL/tasks/matchesWinPerTeam.js:38:5)\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)\n    at async start (/home/thushar/mount_blue/drills/iplTeamSQL/index.js:25:31)","level":"error","timestamp":"2021-06-30 20:12:59"}
