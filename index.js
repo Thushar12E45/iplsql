@@ -23,29 +23,30 @@ async function start() {
   try {
     matchesPlayedResult = await matchesPlayed();
     matchesWinPerTeamResult = await matchesWinPerTeam();
-    console.log(matchesWinPerTeamResult);
-    extraRunsResult = await extraRuns();
-    economicalBowlersResult = await economicalBowlers();
+    extraRunsResult = await extraRuns(2016);
+    economicalBowlersResult = await economicalBowlers(2015);
   } catch (e) {
     console.log(e.message);
     logger.error(e.stack);
   }
 
-  // app.use(express.static('public'));
-  // app.use(express.static(`${__dirname}/public/`));
-  app.use(express.static(`${__dirname}/public`));
-  app.get('/', (req, res) => {
-    res.render('index', {
-      matchesPlayedResult,
-      matchesWinPerTeamResult,
-      extraRunsResult,
-      economicalBowlersResult,
+  try {
+    app.use(express.static(`${__dirname}/public`));
+    app.get('/', (req, res) => {
+      res.render('index', {
+        matchesPlayedResult,
+        matchesWinPerTeamResult,
+        extraRunsResult,
+        economicalBowlersResult,
+      });
     });
-  });
 
-  app.listen(PORT, () => {
-    console.log(`Listening at port http://localhost:${PORT}/`);
-  });
+    app.listen(PORT, () => {
+      console.log(`Listening at port http://localhost:${PORT}/`);
+    });
+  } catch (e) {
+    logger.error(e.stack);
+  }
 }
 
 start();

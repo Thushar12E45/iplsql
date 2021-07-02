@@ -1,7 +1,7 @@
 const { pool } = require('../util/dataBaseConfig.js');
 const logger = require('../util/winstonLogger.js');
 
-async function extraRuns() {
+async function extraRuns(year = 2016) {
   const client = await pool.connect();
 
   try {
@@ -13,7 +13,7 @@ async function extraRuns() {
     deliveryTable as delivery on team.team_id = delivery.batting_team
     join matchesTable as matches on delivery.match_id=matches.match_id
     join seasonTable as season on matches.season_id=season.season_id
-    where season=2016
+    where season=${year}
     group by team 
     order by runs  
   `);

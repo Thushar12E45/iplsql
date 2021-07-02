@@ -1,7 +1,7 @@
 const { pool } = require('../util/dataBaseConfig.js');
 const logger = require('../util/winstonLogger.js');
 
-async function economicalBowlers() {
+async function economicalBowlers(year = 2015) {
   const client = await pool.connect();
 
   try {
@@ -14,7 +14,7 @@ async function economicalBowlers() {
    deliverytable as delivery on playertable.player_id=delivery.bowler
    join matchestable as matches on delivery.match_id=matches.match_id 
    join seasontable as season on season.season_id=matches.season_id
-   where season =2015
+   where season =${year}
    group by player
    order by economy_rate
    limit 10

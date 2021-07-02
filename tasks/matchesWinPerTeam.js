@@ -20,22 +20,22 @@ async function matchesWinPerTeam() {
 
     noOfWinsPerTeam = noOfWinsPerTeam.rows;
 
-    const matchesWonPerTeam = {};
-
+    const matchesWonPerTeamObj = {};
+    // Refacoring the returned data for dsiplaying
     for (const x1 of noOfWinsPerTeam) {
       const obj = {};
-      if (matchesWonPerTeam[x1.season]) {
+      if (matchesWonPerTeamObj[x1.season]) {
         obj.team = x1.winners;
         obj.wins = x1.noofwins;
-        matchesWonPerTeam[x1.season].push(obj);
+        matchesWonPerTeamObj[x1.season].push(obj);
       } else {
-        matchesWonPerTeam[x1.season] = [];
+        matchesWonPerTeamObj[x1.season] = [];
         obj.team = x1.winners;
         obj.wins = x1.noofwins;
-        matchesWonPerTeam[x1.season].push(obj);
+        matchesWonPerTeamObj[x1.season].push(obj);
       }
     }
-    return matchesWonPerTeam;
+    return matchesWonPerTeamObj;
   } catch (err) {
     await client.query('ROLLBACK');
     logger.error(err.stack);

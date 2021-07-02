@@ -1,29 +1,14 @@
-const { Client } = require('pg');
 const { Pool } = require('pg');
+require('dotenv').config();
 
 const dbName = 'ipl';
-const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: `${dbName}`,
-  password: 'abc@123',
-  port: 5432,
-});
 
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: `${dbName}`,
-  password: 'abc@123',
-  port: 5432,
-});
-
-client.on('connect', () => {
-  console.log(`Connected to DataBase ${dbName}`);
-});
-
-client.on('end', () => {
-  console.log(`Diconnected from DataBase ${dbName}`);
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASS,
+  port: process.env.DB_PORT,
 });
 
 pool.on('connect', () => {
@@ -33,4 +18,4 @@ pool.on('connect', () => {
 pool.on('commit', () => {
   console.log(`Diconnected from DataBase ${dbName}`);
 });
-module.exports = { client, pool };
+module.exports = { pool };

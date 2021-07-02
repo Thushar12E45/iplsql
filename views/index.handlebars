@@ -1,17 +1,17 @@
 <div class="matches-played-per-year">
   <h2> Matches Played Per Season</h2>
   <table>
-    {{> createTable matchesPlayedResult}}
+    {{> tableRows matchesPlayedResult}}
   </table>
 </div>
 
 <div class="matches-won-per-team-per-year">
   <h2> Matches won per team per year</h2>
-  <div>
+  <div id="matches-won-division">
     {{#each matchesWinPerTeamResult}}
     <table>
-      <caption>{{@key}}</caption>
-      {{> createTable this}}
+      <caption >{{@key}}</caption>
+      {{> tableRows this}}
     </table>
     {{/each}}
   </div>
@@ -20,11 +20,11 @@
 <div class="extra-runs">
   <h2> Extra runs conceded per team in the year 2016</h2>
   <table>
-    {{> createTable extraRunsResult}} </table>
+    {{> tableRows extraRunsResult}} </table>
 </div>
 
 <div class="bowlers-economy">
   <h2> Bowlers economy in the year 2015</h2>
   <table>
-    {{> createTable economicalBowlersResult}} </table>
+    {{> tableRows economicalBowlersResult}} </table>
 </div>

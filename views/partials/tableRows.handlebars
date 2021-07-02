@@ -1,0 +1,16 @@
+<thead>
+  <tr>
+    {{#each this.[0]}}
+    <th>{{@key}}</th>
+    {{/each}}
+  </tr>
+</thead>
+<tbody>
+  {{#each this}}
+  <tr>
+    {{#each this}}
+    <td>{{this}}</td>
+    {{/each}}
+  </tr>
+  {{/each}}
+</tbody>
